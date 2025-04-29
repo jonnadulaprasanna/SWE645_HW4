@@ -5,7 +5,6 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_NAME = 'prasanna0307/survey-flask-app'
         DEPLOYMENT_NAME = 'hw4deployed'  // assuming your k8s deployment is called this
-        CONTAINER_NAME = 'survey-container' // adjust if needed
     }
 
     stages {
