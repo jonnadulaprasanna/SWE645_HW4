@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub') // DockerHub credentials stored in Jenkins
         IMAGE_NAME = 'prasanna0307/survey-flask-app'
-        DEPLOYMENT_NAME = 'hw4deployed'  // assuming your k8s deployment is called this
+        DEPLOYMENT_NAME = 'hw4deployed'                 // Kubernetes deployment name
+        CONTAINER_NAME = 'survey-container'             // Container name in your deployment.yaml
+        NAMESPACE = 'default'                           // Kubernetes namespace
     }
 
     stages {
@@ -43,8 +45,8 @@ pipeline {
                 echo 'Deploying updated image to Kubernetes...'
                 script {
                     sh '''
-                        kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=$IMAGE_NAME:latest -n default
-                        kubectl rollout status deployment/$DEPLOYMENT_NAME -n default
+                        kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=$IMAGE_NAME:latest -n $NAMESPACE
+                        kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE
                     '''
                 }
             }
@@ -58,4 +60,3 @@ pipeline {
         }
     }
 }
-
