@@ -41,11 +41,7 @@ def create_survey():
         state=data.get('state'),
         zip_code=data.get('zip_code'),
         telephone=data.get('telephone'),
-        email=data.get('email'),
-        date_of_survey=data.get('date_of_survey'),
-        liked_most=data.get('liked_most'),
-        interest_source=data.get('interest_source'),
-        likelihood=data.get('likelihood')
+        
     )
     db.session.add(survey)
     db.session.commit()
