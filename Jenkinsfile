@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub') // DockerHub credentials stored in Jenkins
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')           // DockerHub creds ID in Jenkins
         IMAGE_NAME = 'prasanna0307/survey-flask-app'
-        DEPLOYMENT_NAME = 'hw4deployed'                 // Kubernetes deployment name
-        CONTAINER_NAME = 'survey-container'             // Container name in your deployment.yaml
-        NAMESPACE = 'default'                           // Kubernetes namespace
+        DEPLOYMENT_NAME = 'hw4deployed'
+        CONTAINER_NAME = 'container-0'
+        NAMESPACE = 'default'
     }
 
     stages {
